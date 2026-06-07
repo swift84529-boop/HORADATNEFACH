@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="he">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swift Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <title>Swift Studio - Platinum Edition V8 - הקטנת נפח</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600;800&display=swap');
+
         :root {
             --brand-pink: #d64c78;
             --brand-blue: #25529a;
@@ -49,7 +50,7 @@
             width: 100%; padding: 12px 14px; background: #f8fafc; border: 1px solid var(--border);
             border-radius: 12px; color: var(--text-main); font-size: 14px; outline: none; transition: border 0.2s; margin-bottom: 15px;
         }
-        .login-box input { border-color: var(--brand-pink); }
+        .login-box input:focus { border-color: var(--brand-pink); }
         
         .btn-primary-login {
             background: var(--grad);
@@ -57,7 +58,7 @@
             font-size: 16px; font-weight: bold; cursor: pointer; width: 100%;
             transition: transform 0.2s; box-shadow: 0 4px 15px rgba(214, 76, 120, 0.2);
         }
-        .btn-primary-login { transform: translateY(-2px); }
+        .btn-primary-login:hover { transform: translateY(-2px); }
 
         /* --- Sidebar LEFT (Controls) --- */
         .sidebar-left {
@@ -79,12 +80,12 @@
         .input-row input[type="number"] {
             width: 65px; padding: 6px; border-radius: 8px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; color: var(--brand-pink); outline: none; background: white; margin-bottom: 0;
         }
-        .input-row input[type="number"] { border-color: var(--brand-pink); }
+        .input-row input[type="number"]:focus { border-color: var(--brand-pink); }
 
         select.unit-select {
             width: 65px; padding: 6px; border-radius: 8px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; color: var(--text-dim); outline: none; background: white; cursor: pointer; margin-bottom: 0;
         }
-        select.unit-select { border-color: var(--brand-pink); }
+        select.unit-select:focus { border-color: var(--brand-pink); }
 
         /* Filled Slider Styling */
         input[type="range"] {
@@ -105,13 +106,13 @@
             font-size: 14px; transition: all 0.2s ease;
         }
         .btn-main { background: var(--grad); color: white; box-shadow: 0 8px 15px rgba(214, 76, 120, 0.2); }
-        .btn-main { transform: translateY(-2px); filter: brightness(1.1); }
+        .btn-main:hover { transform: translateY(-2px); filter: brightness(1.1); }
         
         .btn-sec { background: white; border: 1.5px solid var(--border); color: var(--text-main); }
-        .btn-sec { border-color: var(--brand-pink); color: var(--brand-pink); background: #fff1f2; }
+        .btn-sec:hover { border-color: var(--brand-pink); color: var(--brand-pink); background: #fff1f2; }
 
         .btn-small { padding: 8px 12px; background: white; border: 1.5px solid var(--border); border-radius: 8px; cursor: pointer; font-weight: 700; transition: 0.2s; color: var(--text-main); }
-        .btn-small { border-color: var(--brand-pink); color: var(--brand-pink); }
+        .btn-small:hover { border-color: var(--brand-pink); color: var(--brand-pink); }
 
         .copyright {
             margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border);
@@ -142,7 +143,7 @@
             padding: 50px; text-align: center; cursor: pointer; margin-bottom: 40px;
             transition: all 0.3s ease;
         }
-        .drop-zone, .drop-zone.dragover { border-color: var(--brand-pink); background: #fff1f2; transform: scale(1.01); }
+        .drop-zone:hover, .drop-zone.dragover { border-color: var(--brand-pink); background: #fff1f2; transform: scale(1.01); }
         .drop-zone h2 { margin: 0; color: var(--brand-pink); font-size: 22px; font-weight: 800; }
         .drop-zone p { color: var(--text-dim); margin-top: 8px; }
 
@@ -156,7 +157,7 @@
             box-shadow: var(--shadow); border: 1px solid #f1f5f9;
             position: relative; transition: all 0.2s ease;
         }
-        .file-item { border-color: var(--brand-pink); transform: translateY(-2px); }
+        .file-item:hover { border-color: var(--brand-pink); transform: translateY(-2px); }
 
         .thumb { width: 70px; height: 70px; border-radius: 12px; object-fit: cover; background: #f1f5f9; }
         .info { flex: 1; min-width: 0; }
@@ -169,7 +170,7 @@
             border: 1px solid #fee2e2; width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
             display: none; align-items: center; justify-content: center; font-size: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .file-item .del-btn { display: flex; }
+        .file-item:hover .del-btn { display: flex; }
 
         /* Progress Overlay */
         .overlay {
@@ -179,27 +180,28 @@
         }
         .prog-bg { width: 300px; height: 8px; background: #e2e8f0; border-radius: 10px; margin-top: 25px; overflow: hidden; }
         .prog-bar { height: 100%; width: 0%; background: var(--grad); box-shadow: 0 0 15px rgba(214, 76, 120, 0.3); transition: width 0.3s ease; }
+
     </style>
 </head>
 <body>
 
-    <!-- LOGIN OVERLAY -->
-    <div id="loginOverlay" style="display:none;">
+    <div id="loginOverlay">
         <div class="login-box">
             <h2>SWIFT STUDIO</h2>
-            <p style="color:var(--text-dim); margin-bottom:25px;">כלי הקטנת נפח לתמונות<br>המערכת נעולה. הזינו פרטי התחברות:</p>
-            <input type="text" id="loginUser" placeholder="שם משתמש (אופציונלי)" autocomplete="off">
-            <input type="password" id="loginPass" placeholder="סיסמה">
+            <div style="color: var(--brand-pink); font-weight: 800; font-size: 18px; margin-bottom: 10px;">כלי הקטנת נפח לתמונות</div>
+            <p style="color: #64748b; font-size: 14px; margin-bottom: 15px;">המערכת נעולה. הזינו פרטי התחברות:</p>
+            <input type="text" id="loginUser" placeholder="שם משתמש..." style="text-align: center;">
+            <input type="password" id="loginPass" placeholder="הקלידו סיסמה כאן..." style="text-align: center; letter-spacing: 2px;" onkeydown="if(event.key === 'Enter') doLogin()">
             <button class="btn-primary-login" onclick="doLogin()">כניסה למערכת ✨</button>
-            <p style="margin-top:25px; font-size:13px; color:var(--text-dim); line-height:1.6;">
+            
+            <div style="margin-top: 25px; font-size: 13px; color: #64748b;">
                 רוצה לקבל גישה לכלי?<br>
-                דברי איתי במייל: SWIFT84529@GMAIL.COM
-            </p>
+                <a href="mailto:SWIFT84529@GMAIL.COM" style="color: var(--brand-blue); text-decoration: none; font-weight: bold; display: block; margin-top: 5px;">דברי איתי במייל: SWIFT84529@GMAIL.COM</a>
+            </div>
         </div>
     </div>
 
-    <!-- SIDEBAR LEFT -->
-    <div class="sidebar-left">
+    <aside class="sidebar-left">
         <div class="logo-box">
             <h1>SWIFT STUDIO</h1>
             <p>PLATINUM EDITION V8</p>
@@ -208,89 +210,78 @@
         <div class="control-group">
             <label>איכות אופטימיזציה (%)</label>
             <div class="input-row">
-                <input type="number" id="qNum" value="75" min="1" max="100">
-                <input type="range" id="qRange" min="1" max="100" value="75">
+                <input type="range" id="qRange" min="5" max="100" value="75">
+                <input type="number" id="qNum" min="5" max="100" value="75">
             </div>
         </div>
 
         <div class="control-group">
             <label>קנה מידה / Scale (%)</label>
             <div class="input-row">
-                <input type="number" id="sNum" value="100" min="1" max="200">
-                <input type="range" id="sRange" min="1" max="200" value="100">
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label>🎯 הגדרת משקל יעד אוטומטי</label>
-            <div class="input-row">
-                <input type="number" id="targetVal" placeholder="משקל" style="width:80px;">
-                <select id="targetUnit" class="unit-select">
-                    <option value="KB">KB</option>
-                    <option value="MB">MB</option>
-                </select>
-                <button class="btn-small" onclick="autoAdjustToTarget()">החל</button>
+                <input type="range" id="sRange" min="10" max="100" value="100">
+                <input type="number" id="sNum" min="10" max="100" value="100">
             </div>
         </div>
 
         <div class="btn-stack">
-            <button class="btn btn-main" id="btnFolderExport">💾 שמירה ישירה לתיקייה</button>
+            <button class="btn btn-main" id="btnFolderExport">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><polyline points="9 14 12 17 15 14"/></svg>
+                שמירה ישירה לתיקייה
+            </button>
             <button class="btn btn-sec" onclick="document.getElementById('folderInp').click()">📁 העלאת תיקייה שלמה</button>
             <button class="btn btn-sec" id="btnZip">📦 הורדה רגילה (נפרדים)</button>
         </div>
 
-        <div style="margin-top:auto; display:flex; gap:10px;">
-            <button class="btn btn-sec" onclick="logout()" style="flex:1;">🚪 יציאה מהמערכת</button>
-            <button class="btn btn-sec" onclick="resetSystem()" style="flex:1;">⚠️ איפוס מערכת</button>
-        </div>
+        <hr style="width: 100%; border: 0; border-top: 1px solid var(--border); margin: 20px 0 10px 0;">
+        <button class="btn btn-sec" onclick="logout()" style="color: #64748b; margin-bottom: 8px;">🚪 יציאה מהמערכת</button>
+        <button class="btn btn-sec" onclick="resetSystem()" style="color: #ef4444; border-color: #fee2e2; background: #fef2f2;">⚠️ איפוס מערכת</button>
 
-        <div class="copyright">
+        <footer class="copyright">
             © כל הזכויות שמורות ל-Swift Studio Elite<br>
             swift84529@gmail.com
-        </div>
-    </div>
+        </footer>
+    </aside>
 
-    <!-- WORKSPACE -->
-    <div class="workspace">
-        <div class="drop-zone" id="dropZone">
+    <main class="workspace">
+        <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInp').click()">
             <h2>שחררי קבצים כאן</h2>
             <p>העלי תמונות בודדות, גררי קבצים או העלי תיקיות שלמות בבת אחת</p>
-            <input type="file" id="fileInp" accept="image/*" multiple style="display:none;">
-            <input type="file" id="folderInp" webkitdirectory multiple style="display:none;">
+            <input type="file" id="fileInp" multiple hidden>
+            <input type="file" id="folderInp" webkitdirectory hidden>
         </div>
-        <div class="file-grid" id="fileGrid"></div>
-    </div>
 
-    <!-- SIDEBAR RIGHT -->
-    <div class="sidebar-right">
+        <div class="file-grid" id="fileGrid"></div>
+    </main>
+
+    <aside class="sidebar-right">
         <div class="stat-card">
             <span class="stat-label">מספר קבצים</span>
             <span class="stat-value" id="statCount">0</span>
         </div>
         <div class="stat-card">
             <span class="stat-label">משקל מקורי</span>
-            <span class="stat-value" id="statOrig">0 KB</span>
+            <span class="stat-value" style="font-size: 18px;" id="statOrig">0 KB</span>
         </div>
-        <div class="stat-card">
-            <span class="stat-label">חיסכון שנצבר</span>
-            <span class="stat-value" id="statNew">0 KB</span>
+        <div class="stat-card" style="border-right: 4px solid var(--brand-pink);">
+            <span class="stat-label" style="color: var(--brand-pink);">חיסכון שנצבר</span>
+            <span class="stat-value" style="font-size: 18px;" id="statNew">0 KB</span>
             <span class="stat-sub" id="statSaved">0% חסכון</span>
         </div>
-    </div>
+        
+        <div style="margin-top: auto; text-align: center; opacity: 0.3;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" width="45" alt="icon">
+        </div>
+    </aside>
 
-    <!-- LOADER OVERLAY -->
     <div class="overlay" id="loader">
-        <h2 id="loaderTitle" style="color:var(--brand-blue); font-weight:800;">מעבד את הקבצים של Swift...</h2>
-        <div class="prog-bg"><div class="prog-bar" id="progBar"></div></div>
-        <p id="progText" style="color:var(--text-dim); font-weight:700;">0 / 0</p>
+        <h2 style="font-weight: 800; color: var(--brand-pink);" id="loaderTitle">מעבד את הקבצים של Swift...</h2>
+        <div class="prog-bg">
+            <div class="prog-bar" id="progBar"></div>
+        </div>
+        <p id="progText" style="margin-top: 15px; color: var(--text-dim); font-weight: 700;">0 / 0</p>
     </div>
 
     <script>
-        // ==========================================
-        // Password (encoded in Base64 - hidden from view)
-        // ==========================================
-        const _p = atob('U21hbGxGaWxlQDg4Um9ja2V0'); // SmallFile@88Rocket
-
         // ==========================================
         // מערכת התחברות
         // ==========================================
@@ -309,7 +300,9 @@
         function doLogin() {
             const pass = document.getElementById('loginPass').value;
             const user = document.getElementById('loginUser').value;
-            if (pass !== _p) { 
+            
+            // בודק מול המחרוזת המקודדת ב-Base64 כדי להסתיר את הסיסמה (SmallFile@88Rocket)
+            if (btoa(pass) !== 'U21hbGxGaWxlQDg4Um9ja2V0') { 
                 alert('סיסמה שגויה, נסו שוב.'); 
                 return; 
             }
@@ -338,8 +331,6 @@
                 clearAll();
                 qRange.value = 75; document.getElementById('qNum').value = 75;
                 sRange.value = 100; document.getElementById('sNum').value = 100;
-                document.getElementById('targetVal').value = '';
-                document.getElementById('targetUnit').value = 'KB';
                 sync();
             }
         }
@@ -373,10 +364,8 @@
         bindSync(sRange, sNum);
 
         function updateSliderTrack(el) {
-            const min = parseFloat(el.min) || 0;
-            const max = parseFloat(el.max) || 100;
-            const val = ((el.value - min) / (max - min)) * 100;
-            el.style.background = 'linear-gradient(to left, var(--brand-pink) ' + val + '%, #e2e8f0 ' + val + '%)';
+            const val = (el.value - el.min) / (el.max - el.min) * 100;
+            el.style.background = `linear-gradient(to left, var(--brand-pink) ${val}%, #e2e8f0 ${val}%)`;
         }
 
         const sync = () => {
@@ -387,13 +376,6 @@
 
         updateSliderTrack(qRange);
         updateSliderTrack(sRange);
-
-        // ==========================================
-        // תיקון 1: לחיצה על אזור הגרירה פותחת חלון לבחירת קבצים
-        // ==========================================
-        dropZone.addEventListener('click', () => {
-            document.getElementById('fileInp').click();
-        });
 
         // --- Drag & Drop ---
         dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
@@ -429,8 +411,18 @@
         function renderFile(f) {
             const el = document.createElement('div');
             el.className = 'file-item';
-            el.id = 'item-' + f.id;
-            el.innerHTML = '                <button class="del-btn" onclick="removeFile(\'' + f.id + '\')">✕</button>                <img src="' + f.img.src + '" class="thumb">                <div class="info">                    <div class="name">' + f.file.name + '</div>                    <div class="size-line">                        <span>' + formatBytes(f.origSize) + '</span>                        <span class="saved-badge" id="new-' + f.id + '">מעבד...</span>                    </div>                </div>            ';
+            el.id = `item-${f.id}`;
+            el.innerHTML = `
+                <button class="del-btn" onclick="removeFile('${f.id}')">✕</button>
+                <img src="${f.img.src}" class="thumb">
+                <div class="info">
+                    <div class="name">${f.file.name}</div>
+                    <div class="size-line">
+                        <span>${formatBytes(f.origSize)}</span>
+                        <span class="saved-badge" id="new-${f.id}">מעבד...</span>
+                    </div>
+                </div>
+            `;
             fileGrid.appendChild(el);
             processFile(f);
         }
@@ -450,100 +442,9 @@
             const q = qRange.value / 100, s = sRange.value / 100;
             const b = await compressSingle(f, q, s);
             f.blob = b;
-            const el = document.getElementById('new-' + f.id);
+            const el = document.getElementById(`new-${f.id}`);
             if(el) el.innerText = ' ➜ ' + formatBytes(b.size);
             updateStats();
-        }
-
-        // ==========================================
-        // תיקון 2: autoAdjustToTarget משופר – עובד גם עם ערכים נמוכים
-        // ==========================================
-        async function autoAdjustToTarget() {
-            const targetVal = parseFloat(document.getElementById('targetVal').value);
-            const unit = document.getElementById('targetUnit').value;
-            
-            if (!targetVal || isNaN(targetVal) || files.length === 0) {
-                return alert('נא להזין יעד תקין ולוודא שיש תמונות.');
-            }
-            
-            const targetBytes = unit === 'MB' ? targetVal * 1024 * 1024 : targetVal * 1024;
-
-            // הגבלה מינימלית: תמונת JPEG קטנה תופסת לפחות 1.5KB
-            if (targetBytes < 1500) {
-                return alert('היעד קטן מדי. המינימום האפשרי הוא כ-1.5KB.');
-            }
-
-            loaderTitle.innerText = 'מתאים למשקל יעד: ' + targetVal + ' ' + unit + '...';
-            loader.style.display = 'flex';
-            
-            try {
-                let c = 0;
-                for (let f of files) {
-                    let bestBlob = null;
-                    const baseScale = sRange.value / 100;
-                    
-                    // שלב 1: חיפוש בינארי – איכות (Quality) בין 1 ל-100
-                    let left = 1, right = 100;
-                    let bestQ = -1;
-                    
-                    while (left <= right) {
-                        const mid = Math.floor((left + right) / 2);
-                        const testBlob = await compressSingle(f, mid / 100, baseScale);
-                        
-                        if (testBlob && testBlob.size <= targetBytes) {
-                            bestBlob = testBlob;
-                            bestQ = mid;
-                            left = mid + 1; // ננסה איכות גבוהה יותר
-                        } else {
-                            right = mid - 1; // צריך איכות נמוכה יותר
-                        }
-                    }
-
-                    // שלב 2: אם לא הגענו ליעד גם באיכות הכי נמוכה – נקטין Scale
-                    if (!bestBlob || bestQ < 1) {
-                        let scaleLow = 1, scaleHigh = Math.max(1, Math.floor(baseScale * 100) - 1);
-                        let bestScale = -1;
-                        
-                        // נסה scale יורד עם איכות 50% כבסיס
-                        while (scaleLow <= scaleHigh) {
-                            const scaleMid = Math.floor((scaleLow + scaleHigh) / 2);
-                            const testBlob = await compressSingle(f, 0.15, scaleMid / 100);
-                            
-                            if (testBlob && testBlob.size <= targetBytes) {
-                                bestBlob = testBlob;
-                                bestScale = scaleMid;
-                                scaleLow = scaleMid + 1; // ננסה Scale גבוה יותר
-                            } else {
-                                scaleHigh = scaleMid - 1; // צריך Scale נמוך יותר
-                            }
-                        }
-
-                        // גיבוי אחרון
-                        if (!bestBlob) {
-                            bestBlob = await compressSingle(f, 0.01, 0.03);
-                        }
-                    }
-
-                    if (bestBlob) {
-                        f.blob = bestBlob;
-                        const el = document.getElementById('new-' + f.id);
-                        if(el) el.innerText = ' ➜ (אוטומטי) ' + formatBytes(bestBlob.size);
-                    }
-                    
-                    c++;
-                    progBar.style.width = (c/files.length)*100 + '%';
-                    progText.innerText = c + ' / ' + files.length;
-                }
-            } catch (e) {
-                console.error(e);
-                alert('התרחשה שגיאה במהלך התאמת המשקל.');
-            } finally {
-                updateStats();
-                setTimeout(() => { 
-                    loader.style.display = 'none'; 
-                    loaderTitle.innerText = 'מעבד את הקבצים של Swift...'; 
-                }, 500);
-            }
         }
 
         function updateStats() {
@@ -555,13 +456,13 @@
             document.getElementById('statNew').innerText = formatBytes(totalNew);
             if(totalOrig > 0) {
                 const s = Math.round((1 - (totalNew/totalOrig)) * 100);
-                document.getElementById('statSaved').innerText = s + '% חסכון בנפח';
+                document.getElementById('statSaved').innerText = `${s}% חסכון בנפח`;
             }
         }
 
         function removeFile(id) {
             files = files.filter(f => f.id !== id);
-            document.getElementById('item-' + id).remove();
+            document.getElementById(`item-${id}`).remove();
             updateStats();
         }
 
@@ -581,13 +482,13 @@
                 loader.style.display = 'flex';
                 let c = 0;
                 for(let f of files) {
-                    const handle = await dir.getFileHandle(f.file.name.split('.')[0] + '_Swift.jpg', { create: true });
+                    const handle = await dir.getFileHandle(f.file.name.split('.')[0] + "_Swift.jpg", { create: true });
                     const writable = await handle.createWritable();
                     await writable.write(f.blob);
                     await writable.close();
                     c++;
                     progBar.style.width = (c/files.length)*100 + '%';
-                    progText.innerText = c + ' / ' + files.length;
+                    progText.innerText = `${c} / ${files.length}`;
                 }
                 setTimeout(() => { loader.style.display = 'none'; alert('הקבצים נשמרו בהצלחה בתיקייה!'); }, 500);
             } catch (err) { alert('הפעולה בוטלה או שהדפדפן אינו תומך בשמירה ישירה לתיקייה.'); }
@@ -595,30 +496,18 @@
 
         document.getElementById('btnZip').onclick = async () => {
             if(files.length === 0) return;
-
             loader.style.display = 'flex';
             let c = 0;
-
             for(let f of files) {
-                const blob = f.blob || f.file;
-
                 const l = document.createElement('a');
-                l.href = URL.createObjectURL(blob);
-                l.download = f.file.name.split('.')[0] + '_Swift.jpg';
-
-                document.body.appendChild(l);
+                l.href = URL.createObjectURL(f.blob);
+                l.download = f.file.name.split('.')[0] + "_Swift.jpg";
                 l.click();
-                document.body.removeChild(l);
-
-                setTimeout(() => URL.revokeObjectURL(l.href), 1000);
-
                 c++;
                 progBar.style.width = (c/files.length)*100 + '%';
-                progText.innerText = c + ' / ' + files.length;
-
-                await new Promise(r => setTimeout(r, 200));
+                progText.innerText = `${c} / ${files.length}`;
+                await new Promise(r => setTimeout(r, 150));
             }
-
             loader.style.display = 'none';
         };
     </script>
